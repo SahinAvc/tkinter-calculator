@@ -1,0 +1,140 @@
+from tkinter import *
+
+#screen
+s = Tk()
+s.title("Calculator")
+s.geometry("320x500")
+s.configure(bg="#1e1e1e")
+
+# input screen
+display = Entry(
+    s,
+    font=("Segoe UI", 24),
+    bg="#2d2929",
+    fg="white",
+    justify="right",
+    bd=0
+)
+display.place(x=10, y=20, width=300, height=60)
+
+#color theme
+btn_bg = "#2d2d2d"
+op_bg = "#3a3a3a"
+btn_fg = "white"
+eq_bg = "#d47df8"
+
+#size-position settings
+btn_w = 70
+btn_h = 65   
+gap = 3      
+
+#functions
+expression = ""
+
+def add_process(value):
+    global expression
+    expression += str(value)
+    display.delete(0,END)
+    display.insert(END,expression)
+
+def calculate():
+    global expression
+    try:
+        ifade = display.get()
+        ifade = ifade.replace("×", "*").replace("÷", "/").replace(",", ".")
+        sonuc = eval(ifade)
+        display.delete(0, END)
+        display.insert(END, str(sonuc))
+        expression = str(sonuc)
+
+    except:
+        display.delete(0, END)
+        display.insert(END, "Hata")
+        expression = ""
+
+
+def clear():
+    global expression
+    expression = ""
+    display.delete(0,END)
+
+def backspace():
+    global expression
+    expression = expression[:-1]
+
+    display.delete(0,END)
+    display.insert(END,expression)
+
+def screen_clear():
+    global expression
+    expression = ""
+    display.delete(0,END)
+
+# top row (CE, C, %, ←)
+x0 = 20
+y0 = 100
+
+btn_ce = Button(s, text="CE", width=6, height=3, bg=op_bg, fg=btn_fg, bd=0,command=screen_clear)
+btn_ce.place(x=x0, y=y0)
+
+btn_c = Button(s, text="C", width=6, height=3, bg=op_bg, fg=btn_fg, bd=0,command=clear)
+btn_c.place(x=x0 + btn_w + gap, y=y0)
+
+btn_percent = Button(s, text="%", width=6, height=3, bg=op_bg, fg=btn_fg, bd=0,command=lambda:add_process("%"))
+btn_percent.place(x=x0 + (btn_w + gap) * 2, y=y0)
+
+btn_back = Button(s, text="←", width=6, height=3, bg=op_bg, fg=btn_fg, bd=0,command=backspace)
+btn_back.place(x=x0 + (btn_w + gap) * 3, y=y0)
+
+#numbers and operations
+y1 = y0 + btn_h + gap
+
+btn_7 = Button(s, text="7", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("7"))
+btn_7.place(x=x0, y=y1)
+
+btn_8 = Button(s, text="8", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("8"))
+btn_8.place(x=x0 + btn_w + gap, y=y1)
+
+btn_9 = Button(s, text="9", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("9"))
+btn_9.place(x=x0 + (btn_w + gap) * 2, y=y1)
+
+btn_div = Button(s, text="÷", width=6, height=3, bg=op_bg, fg=btn_fg, bd=0,command=lambda:add_process("÷"))
+btn_div.place(x=x0 + (btn_w + gap) * 3, y=y1 - 12)
+
+btn_4 = Button(s, text="4", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("4"))
+btn_4.place(x=x0, y=y1 + btn_h + gap)
+
+btn_5 = Button(s, text="5", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("5"))
+btn_5.place(x=x0 + btn_w + gap, y=y1 + btn_h + gap)
+
+btn_6 = Button(s, text="6", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("6"))
+btn_6.place(x=x0 + (btn_w + gap) * 2, y=y1 + btn_h + gap)
+
+btn_mul = Button(s, text="×", width=6, height=3, bg=op_bg, fg=btn_fg, bd=0,command=lambda:add_process("x"))
+btn_mul.place(x=x0 + (btn_w + gap) * 3, y=y1 + btn_h + gap -22)
+
+btn_1 = Button(s, text="1", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("1"))
+btn_1.place(x=x0, y=y1 + (btn_h + gap) * 2)
+
+btn_2 = Button(s, text="2", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("2"))
+btn_2.place(x=x0 + btn_w + gap, y=y1 + (btn_h + gap) * 2)
+
+btn_3 = Button(s, text="3", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("3"))
+btn_3.place(x=x0 + (btn_w + gap) * 2, y=y1 + (btn_h + gap) * 2)
+
+btn_sub = Button(s, text="-", width=6, height=3, bg=op_bg, fg=btn_fg, bd=0,command=lambda:add_process("-"))
+btn_sub.place(x=x0 + (btn_w + gap) * 3, y=y1 + (btn_h + gap) * 2 - 32)
+
+btn_0 = Button(s, text="0", width=14, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process("0"))
+btn_0.place(x=x0, y=y1 + (btn_h + gap) * 3)
+
+btn_comma = Button(s, text=",", width=6, height=3, bg=btn_bg, fg=btn_fg, bd=0,command=lambda:add_process(","))
+btn_comma.place(x=x0 + (btn_w + gap) * 2, y=y1 + (btn_h + gap) * 3)
+
+btn_add = Button(s, text="+", width=6, height=3, bg=op_bg, fg=btn_fg, bd=0,command=lambda:add_process("+"))
+btn_add.place(x=x0 + (btn_w + gap) * 3, y=y1 + (btn_h + gap) * 3 - 42)
+
+btn_eq = Button(s, text="=", width=6, height=2, bg=eq_bg, fg="black", bd=0,command=calculate)
+btn_eq.place(x=x0 + (btn_w + gap) * 3, y=y1 + (btn_h + gap) * 3.2)
+
+s.mainloop()
