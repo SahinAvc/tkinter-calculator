@@ -1,23 +1,29 @@
-# tkinter-calculator
-A modern desktop calculator built with Python and Tkinter, featuring a clean UI and basic arithmetic operations.
+# 🧮 tkinter-calculator
 
-🧮 tkinter-calculator
-A simple desktop calculator built with Python and Tkinter.
-It features a clean user interface and supports basic arithmetic operations.
-Features
-- Responsive button layout
+A modern desktop calculator built with Python and Tkinter, featuring a clean UI, keyboard support, and essential arithmetic operations.
+
+## 📌 Features
+
+- Responsive button layout with custom color theme
 - Entry-based input display
-- Supports addition, subtraction, multiplication, division
-- Clear (C), Clear Entry (CE), and Backspace functions
-- Percentage and decimal point support
-Technologies
-- Python 3
-- Tkinter (standard GUI library)
-How to Run
-python TKcalculator.py
+- Supports addition (`+`), subtraction (`-`), multiplication (`×`), division (`÷`)
+- Percentage (`%`) and decimal point (`.`) support
+- Clear (`C`), Clear Entry (`CE`), and Backspace (`←`) functions
+- Keyboard input support:
+  - Type numbers and operators directly
+  - `Enter` to calculate
+  - `Backspace` to delete last character
+  - `C` to clear all, `E` to clear entry
+  - `*` and `/` keys are converted to `×` and `÷` for display
 
+## 🧠 Technologies Used
+
+- **Python 3**
+- **Tkinter** – Python’s standard GUI library
+
+## 🚀 How to Run
 
 Make sure Python is installed on your system.
 
-License
-This project is licensed under the MIT License.
+```bash
+python TKcalculator.py
